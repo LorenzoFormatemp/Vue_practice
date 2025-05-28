@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue senza compilazione</title>
+</head>
+<body>
+    
+
+    <div id="app">
+        <h1>{{ message }}</h1>
+    </div>
+
+
+
+    <!-- vue cdn: mi importo vue  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+
+        // destructuring => dall'ogg Vue prendo la proprietà createApp e la uso per crearmi un'altra variabile
+        // equivale =>  const createApp = Vue.createApp;
+        const { createApp } = Vue;
+
+        createApp({
+            data(){ // variabili che ci serviranno per l'applicazione
+                return {
+                    message: 'Hello Vue'
+                }
+            }
+        }).mount('#app');
+
+
+    </script>
+
+</body>
+</html>
