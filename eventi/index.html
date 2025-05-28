@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - Eventi</title>
+</head>
+<body>
+    
+
+    <div id="app">
+        <h1>Vue - Eventi</h1>
+
+        <button @click="saluta">Clicca</button>
+
+        <p>{{ message }}</p>
+    </div>
+
+
+
+    <!-- vue cdn: mi importo vue  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+
+        // destructuring => dall'ogg Vue prendo la proprietà createApp e la uso per crearmi un'altra variabile
+        // equivale =>  const createApp = Vue.createApp;
+        const { createApp } = Vue;
+
+        createApp({
+            data(){ // opzione data // variabili che ci serviranno per l'applicazione
+                return {
+                    message: 'Hello Vue',
+                    is_user: false
+                }
+            },
+            methods: {
+                saluta: function(){
+                    return this.message = 'Ciao';
+                },
+                checkUser: function(){
+                    // diverse condizioni
+                    this.is_user = true;
+                }
+            }
+        }).mount('#app');
+
+
+    </script>
+
+</body>
+</html>
