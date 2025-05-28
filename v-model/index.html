@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue senza compilazione</title>
+</head>
+<body>
+    
+
+    <div id="app">
+
+        <!-- v-model -->
+        <div>
+            <label for="">Messaggio:</label>
+            <input type="text" v-model="message">
+        </div>
+
+        <div>
+            <label for="">Nome:</label>
+            <input type="text" v-model="name">
+        </div>
+
+        <div>
+            <label for="">Password:</label>
+            <input type="text" v-model="password">
+        </div>
+
+        <!-- monitoro il valore che cambia -->
+        <p>Messaggio: {{ message }}</p>
+        <p>Nome: {{ name }}</p>
+        <p>Password: {{ password }}</p>
+
+    </div>
+
+
+
+    <!-- vue cdn: mi importo vue  -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data(){
+                return {
+                    message: "",
+                    name: "",
+                    password: ""
+                }
+            },
+        }).mount('#app');
+
+    </script>
+
+</body>
+</html>
