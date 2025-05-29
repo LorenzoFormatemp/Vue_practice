@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    
+
+    <id id="app">
+
+        <!-- gestisco la chiamata -->
+        <button @click="callApi">Chiama Api</button>
+
+        <!-- gestisco il rendering dei dati nel dom -->
+        <ul>
+            <li v-for="post in result" :key="post.id">
+                <p><b>Title</b>: {{ post.title }}</p>
+                <p>Content: {{ post.body }}</p>
+            </li>
+        </ul>
+
+    </id>
+
+
+
+
+    <!-- axios cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    
+    <!-- vue cdn -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data(){
+                return {
+                    result: null, // contenitore della mia risposta
+                    base_url: "https://jsonplaceholder.typicode.com/posts",  // url che chiamo
+                }
+            },
+            methods: {
+                callApi(){
+                    axios.get(this.base_url) // definisco il metodo HTTP
+                        .then((response) =>{ // gestisco la risposta
+                            console.log(response);
+                            this.result = response.data;
+                        })
+                        .catch((error) => { // gestisco eventuali errori
+                            console.error("errore nella chiamata: ", error);
+                        });    
+                }
+            }
+        }).mount('#app');
+
+
+    </script>
+
+</body>
+</html>
