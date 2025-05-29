@@ -10,7 +10,7 @@
                     <h5>Edit Task</h5>
 
                     <!-- TODO: gestire chiusura della modale -->
-                    <button type="button" class="btn-close"></button>
+                    <button type="button" class="btn-close" @click="$emit('close')"></button>
                 </div>
 
                 <div class="modal-body">
@@ -19,7 +19,7 @@
 
                 <div class="modal-footer">
                     <!-- TODO: gestire chiusura della modale / annullamento -->
-                    <button class="btn btn-secondary">Close</button>
+                    <button class="btn btn-secondary" @click="$emit('close')">Close</button>
 
                     <!-- TODO: gestire il salvataggio della modifica -->
                     <button class="btn btn-primary" @click="save">Save Changes</button>
@@ -44,7 +44,6 @@ export default {
     },
     methods: {
         save(){
-            console.log(this.editedText);
             this.$emit('save', this.editedText)
         }
     }

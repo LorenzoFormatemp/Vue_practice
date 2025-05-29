@@ -22,6 +22,7 @@
       v-if="selectedTask"
       :task="selectedTask.text"
       @save="saveEdit"
+      @close="selectedTask = null"
     />
 
   </div>  
@@ -37,31 +38,33 @@ export default {
   data() {
     return {
       // variabili
-      tasks : [],
+      tasks : JSON.parse(localStorage.getItem('tasks')) || [],
       selectedTask : null
     }
   },
   methods: {
     // metodi/funzioni
-
-    /* 2- gestire la modifica
-    */
     addTask(task){
       this.tasks.push({ text: task });
+      this.saveTasks()
     },
     removeTask(index){
       this.tasks.splice(index, 1);
+      this.saveTasks()
     },
     openEditModal(task, index){
       // valorizzare il selectedTask
+      console.log(task);
+      console.log(index);
+      console.log(this.selectedTask);
       this.selectedTask = { ...task, index }
     },
     saveEdit(newText){
-      console.log(newText);
-      console.log(this.tasks[this.selectedTask.index]);
-
       this.tasks[this.selectedTask.index] = newText;
       this.selectedTask = null;
+    },
+    saveTasks(){
+      localStorage.setItem('tasks', JSON.stringify(this.tasks))
     }
 
   }
