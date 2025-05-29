@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-for</title>
+</head>
+<body>
+    
+    <div id="app">
+
+        <div class="container">
+            <h2>Basic example with array</h2>
+
+            <ul>
+                <li v-for="user in users">
+                    {{ user }}
+                </li>
+            </ul>
+        </div>
+
+        <div class="container">
+
+            <h2>Basic example with object</h2>
+            
+            <ul>
+                <!-- 
+                    array fruits
+                    1) - Devo mostrare questo li? 
+                        - condizione: la prop name del singolo frutto esista e sia differente da null
+                        - errore: non so cosa sia name !!
+                    2) ciclo
+                -->
+                <li v-for="fruit in fruits" :key="fruit.id">
+                    <!-- {{ fruit.name ? fruit.name : 'Senza nome'}} -->
+                      {{ fruit.name }}
+                </li>
+            </ul>
+
+        </div>
+
+
+        <div class="container">
+            <h2>Example with v-for and v-if</h2>
+
+            <ul>
+                <li v-for="item in availableItems" :key="item.id">
+                    {{ item.name }}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+
+        const { createApp } = Vue;
+
+        createApp({
+            data(){
+                return {
+                    users : ['Mario', 'Sara', 'Luca'],
+                    fruits : [
+                        {
+                            id: 1, name: 'Apple'
+                        },
+                        {
+                            id: 2, name: 'Banana'
+                        },
+                        {
+                            id: 3, name: null
+                        },
+                    ],
+                    items : [ // array che mi arriva da un ipotetico servizio esterno / back-end
+                        {id: 1, name:"Apple", available: true},
+                        {id: 2, name:"Banana", available: false},
+                        {id: 3, name:"Cherry", available: true}
+                    ]
+                }
+            },
+            computed: {
+                availableItems(){
+                    return this.items.filter(item => item.available === true);
+                }
+            }
+        }).mount('#app');
+
+
+
+    </script>
+</body>
+</html>
