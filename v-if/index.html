@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-if && V-else && V-show</title>
+</head>
+<body>
+
+
+    <div id="app">
+
+        <!-- basic if / else -->
+        <!-- 
+            - mostrarmi il primo <p> se sono loggato
+            - altrimenti mostrati il secondo
+        -->
+
+        <p v-if="loggedIn">Bentornato nella pagina!</p>
+        <p v-else>Devi loggarti per continuare!</p>
+
+        <!-- if / else if / else -->
+         <!-- 
+            - 1) mostrarmi il primo <p> se sono admin
+            - 2) mostrarmi il secondo <p> se sono user
+            - 3) altrimenti => mostra il terzo
+        -->
+        <p v-if="status === 'Admin'">Benvenuto, Admin!</p>
+        <p v-else-if="status === 'user'">Benveuto, User!</p>
+        <p v-else>Perfavore, loggati nel sito!</p>
+        
+        <!-- 
+                - evento => v-if
+        -->
+        <button @click="showMessage = !showMessage">
+            Nascondi Messaggio
+        </button>
+
+        <p v-if="showMessage">Ciao! Questo è un messaggio!</p>
+        <p v-else>Il messaggio è stato nascosto</p>
+
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data(){
+                return {
+                    //variabili
+                    loggedIn: false,
+                    status: 'guest',
+                    showMessage: true
+                }
+            }
+        }).mount("#app");
+
+
+
+
+    </script>
+
+    
+</body>
+</html>
