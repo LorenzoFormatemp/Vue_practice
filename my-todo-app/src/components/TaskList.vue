@@ -1,19 +1,18 @@
 <template>
     <!-- ciclo di tutti i task -->
 
-    <!-- <ul>
-        <li v-for="(task , index) in tasks" :key="index">{{ task.text }}</li>
-    </ul> -->
-
     <!-- se l'array dei task ne ha almeno 1 allora ciclami l'array -->
-    <TaskItem v-for="(task, index) in tasks"
-        :key="index"
-        :task="task"
-    />
 
+    <div v-if="tasks.length">
+        <TaskItem v-for="(task, index) in tasks"
+            :key="index"
+            :task="task"
+            @remove ="() => $emit('remove-task', index)"
+        />
+    </div>
 
     <!-- altrimenti mostra un messaggio tipo; 'aggiungi dei task' -->
-    <p>No tasks. Add at least one task</p>
+    <p v-else>No tasks. Add at least one task</p>
 </template>
 
 <script>

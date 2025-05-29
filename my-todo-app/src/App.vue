@@ -6,7 +6,10 @@
     <AddTask @add-task="addTask"/>
     
     <!-- componente: lista dei task -->
-    <TaskList :tasks="tasks"/>
+    <TaskList 
+      :tasks="tasks"
+      @remove-task="removeTask"
+      />
 
   </div>  
 </template>
@@ -29,6 +32,9 @@ export default {
       console.log(task);
       this.tasks.push({ text: task });
       console.log(this.tasks);
+    },
+    removeTask(index){
+      this.tasks.splice(index, 1);
     }
   }
 

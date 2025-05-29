@@ -12,7 +12,7 @@
                 <button class="btn btn-sm btn-warning me-2">Edit</button>
 
                 <!-- eliminazione task -->
-                <button class="btn btn-sm btn-danger">Delete</button>
+                <button class="btn btn-sm btn-danger" @click="$emit('remove')">Delete</button>
             </div>
 
         </div>
