@@ -1,9 +1,9 @@
 <template>
     <!-- html -->
-    <form action="">
-        <input type="text" class="form-control" placeholder="Enter your task" required>
+    <form @submit.prevent="submitTask" action="" class="input-group mb-3">
+        <input v-model="task" type="text" class="form-control" placeholder="Enter your task" required>
+        <button type="submit" class="btn btn-primary">Add task</button>
     </form>
-
 
 </template>
 
@@ -13,10 +13,15 @@ export default {
     data() {
         return {
             // variabili
+            task: ''
         }
     },
     methods: {
         // funzioni
+        submitTask(){
+            // aggiungere il task inserito alla lista dei task
+            console.log(this.task);
+        }
     }
 }
 
