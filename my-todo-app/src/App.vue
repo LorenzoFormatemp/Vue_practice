@@ -6,7 +6,7 @@
     <AddTask @add-task="addTask"/>
     
     <!-- componente: lista dei task -->
-    <TaskList />
+    <TaskList :tasks="tasks"/>
 
   </div>  
 </template>
@@ -25,8 +25,10 @@ export default {
   },
   methods: {
     // metodi/funzioni
-    addTask(task){      
-      this.tasks.push(task);
+    addTask(task){
+      console.log(task);
+      this.tasks.push({ text: task });
+      console.log(this.tasks);
     }
   }
 
