@@ -20,12 +20,12 @@ export default {
         // funzioni
         submitTask(){
             // aggiungere il task inserito alla lista dei task
-            console.log(this.task);
-        }
+            this.$emit('add-task', this.task);
+            //pulisco l'input
+            this.task = '';
+        }   
     }
 }
-
-
 </script>
 
 <style scoped></style>
