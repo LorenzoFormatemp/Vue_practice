@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" v-model="editedText">
                 </div>
 
                 <div class="modal-footer">
@@ -22,7 +22,7 @@
                     <button class="btn btn-secondary">Close</button>
 
                     <!-- TODO: gestire il salvataggio della modifica -->
-                    <button class="btn btn-primary">Save Changes</button>
+                    <button class="btn btn-primary" @click="save">Save Changes</button>
                 </div>
 
             </div>
@@ -38,9 +38,16 @@
 export default {
     props: ['task'], // task che vado a modificare 
     data() {
-        return {}
+        return {
+            editedText : this.task
+        }
     },
-    methods: {}
+    methods: {
+        save(){
+            console.log(this.editedText);
+            this.$emit('save', this.editedText)
+        }
+    }
 }
 </script>
 

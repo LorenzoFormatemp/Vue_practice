@@ -21,6 +21,7 @@
     <EditModal
       v-if="selectedTask"
       :task="selectedTask.text"
+      @save="saveEdit"
     />
 
   </div>  
@@ -54,7 +55,15 @@ export default {
     openEditModal(task, index){
       // valorizzare il selectedTask
       this.selectedTask = { ...task, index }
+    },
+    saveEdit(newText){
+      console.log(newText);
+      console.log(this.tasks[this.selectedTask.index]);
+
+      this.tasks[this.selectedTask.index] = newText;
+      this.selectedTask = null;
     }
+
   }
 
 }
