@@ -9,7 +9,7 @@
             <!-- TODO: gestire modifica ed eliminazione -->
             <div>
                 <!-- edit -->
-                <button class="btn btn-sm btn-warning me-2">Edit</button>
+                <button class="btn btn-sm btn-warning me-2" @click="$emit('edit')">Edit</button>
 
                 <!-- eliminazione task -->
                 <button class="btn btn-sm btn-danger" @click="$emit('remove')">Delete</button>

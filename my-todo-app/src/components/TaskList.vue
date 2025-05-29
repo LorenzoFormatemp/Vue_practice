@@ -7,6 +7,7 @@
         <TaskItem v-for="(task, index) in tasks"
             :key="index"
             :task="task"
+            @edit ="() => $emit('edit-task', index)"
             @remove ="() => $emit('remove-task', index)"
         />
     </div>

@@ -8,8 +8,20 @@
     <!-- componente: lista dei task -->
     <TaskList 
       :tasks="tasks"
+      @edit-task="openEditModal"
       @remove-task="removeTask"
-      />
+    />
+
+    <!-- componente: modale 
+        
+      TODO: 
+        - salvataggio del testo modificato in modale
+        - chiusura modale con o senza testo modificato
+      -->
+    <EditModal
+      v-if="selectedTask"
+      :task="selectedTask.text"
+    />
 
   </div>  
 </template>
@@ -17,24 +29,31 @@
 <script>
 import AddTask from './components/AddTask.vue'
 import TaskList from './components/TaskList.vue'
+import EditModal from './components/EditModal.vue'
 
 export default {
-  components: { AddTask, TaskList },
+  components: { AddTask, TaskList, EditModal },
   data() {
     return {
       // variabili
-      tasks : []
+      tasks : [],
+      selectedTask : null
     }
   },
   methods: {
     // metodi/funzioni
+
+    /* 2- gestire la modifica
+    */
     addTask(task){
-      console.log(task);
       this.tasks.push({ text: task });
-      console.log(this.tasks);
     },
     removeTask(index){
       this.tasks.splice(index, 1);
+    },
+    openEditModal(task, index){
+      // valorizzare il selectedTask
+      this.selectedTask = { ...task, index }
     }
   }
 
